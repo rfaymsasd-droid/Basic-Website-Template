@@ -1,11 +1,72 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Portfolio</title>
-</head>
-<body>
-  <h1>Welcome to my portfolio!</h1>
-  <p><a href="example.html">Go to my example page</a></p>
-  <img src="https://static01.nyt.com/images/2021/02/07/fashion/NEW-BLUE-1/NEW-BLUE-1-videoSixteenByNine3000.jpg?year=2021&h=1688&w=3000&s=b4d578bc84e059748593db4526556a44ea64f251754b7d51753724e2e368dc20&k=ZQJBKqZ0VN&tw=1" alt="A descriptive fallback text for your image">
-</body>
-</html>
+import React from 'react';
+import ShapeGrid from './ShapeGrid';
+import './App.css'; // We'll use this to center your text
+
+export default function App() {
+  return (
+    <div className="portfolio-container">
+      {/* Background Layer */}
+      <div className="background-layer">
+        <ShapeGrid 
+          speed={0.5}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="#2F293A"
+          hoverFillColor="#222222"
+          shape="square"
+          hoverTrailAmount={0}
+        />
+      </div>
+
+      {/* Text Overlay Layer */}
+      <div className="content-layer">
+        <h1><strong>Welcome to my Portfolio</strong></h1>
+        <p><em>I Love Calculus</em></p>
+      </div>
+    </div>
+  );
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #000; /* Dark background to match your grid colors */
+  color: white;
+  font-family: sans-serif;
+}
+
+.portfolio-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.content-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  pointer-events: none; /* This lets your mouse interact with the canvas underneath */
+}
+
+.content-layer h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.content-layer p {
+  font-size: 1.5rem;
+  margin-top: 0;
+  color: #a0a0a0;
+}
